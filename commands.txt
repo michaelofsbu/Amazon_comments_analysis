@@ -1,0 +1,15 @@
+ssh -i ~/.ssh/id_rsa jyao@13.58.184.203
+scp a3_p1_Yao_112714149.py jyao@13.58.184.203:./hw3
+hdfs dfs -put Software_5.json.gz CSE545/data
+
+hdfs dfs -cat /user/jyao/output/*
+hdfs dfs -rm -r /user/jyao/output
+
+time spark-submit a3_p1_Yao_112714149.py /data/Software_5.json.gz
+
+
+scp a3_p2_Yao_112714149.py jyao@13.58.184.203:./hw3
+time spark-submit a3_p2_Yao_112714149.py hdfs:/data/Software_5.json.gz "['B00EZPXYP4', 'B00CTTEKJW']"
+time spark-submit a3_p2_Yao_112714149.py /data/Books_5.json.gz "['0062082361', '1469216051']"
+
+time spark-submit a3_p2_Yao_112714149.py Software_5.json "['B00EZPXYP4', 'B00CTTEKJW']"
